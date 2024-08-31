@@ -1,0 +1,81 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('https://i.pinimg.com/564x/4c/16/f2/4c16f257d2c3a2ca0cda3513dfefae75.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.05);
+}
+
+h1 {
+    font-size: 3em;
+    margin: 0;
+    color: #ff9800;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.search-bar {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar input {
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 70%;
+    transition: border-color 0.3s;
+}
+
+.search-bar input:focus {
+    border-color: #ff9800;
+}
+
+.search-bar button {
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    cursor: pointer;
+    background-color: #ff9800;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #e68a00;
+}
+
+.error {
+    color: #ff4d4d;
+    margin-top: 10px;
+    font-size: 0.9em;
+}

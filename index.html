@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Vocabulum</h1>
+        <h2>Word: <span id="word"> </span></h2>
+        <p id="definition"> Search for a word.</p>
+        <p id="example">Example:   </p>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search for a word..." aria-label="Search for a word" onkeydown="if(event.key === 'Enter') searchWord()">
+            <button onclick="searchWord()" aria-label="Search">🔍</button>
+        </div>
+        <p id="error" class="error"></p>
+    </div>
+    <
