@@ -86,13 +86,18 @@ const sampleTexts = [
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
     initializeTabs();
-    showWordOfTheDay();
     updateFavoriteButton();
 });
 
 function initializeEventListeners() {
     // Word search events
     searchForm.addEventListener('submit', handleWordSearch);
+    wordInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleWordSearch(e);
+        }
+    });
     pronunciationBtn.addEventListener('click', playPronunciation);
     retryBtn.addEventListener('click', () => {
         if (currentWord) {
@@ -205,7 +210,7 @@ async function handleWordSearch(e) {
     const word = wordInput.value.trim().toLowerCase();
     
     if (!word) {
-        showError('Please enter a word to search');
+        showNotification('Please enter a word to search');
         return;
     }
     
@@ -213,6 +218,7 @@ async function handleWordSearch(e) {
 }
 
 async function searchWord(word) {
+    console.log('Searching for word:', word); // Debug log
     showLoading();
     hideError();
     hideResults();
@@ -221,22 +227,27 @@ async function searchWord(word) {
     lastSearchedWord = word;
     
     // Update topic input placeholder
-    topicInput.placeholder = `Generate content about "${word}"...`;
+    if (topicInput) {
+        topicInput.placeholder = `Generate content about "${word}"...`;
+    }
     
     try {
         const response = await fetch(`${DICTIONARY_API_URL}${word}`);
+        console.log('API Response status:', response.status); // Debug log
         
         if (!response.ok) {
             throw new Error('Word not found');
         }
         
         const data = await response.json();
+        console.log('API Response data:', data); // Debug log
         const wordData = data[0];
         
         displayWordResult(wordData);
         addToSearchHistory(word);
         
     } catch (err) {
+        console.error('Search error:', err); // Debug log
         showError(`Sorry, we couldn't find the word "${word}". Please check the spelling and try again.`);
     } finally {
         hideLoading();
@@ -244,6 +255,7 @@ async function searchWord(word) {
 }
 
 function displayWordResult(wordData) {
+    console.log('Displaying word result:', wordData); // Debug log
     wordTitle.textContent = wordData.word;
     
     // Handle pronunciation
@@ -1061,11 +1073,11 @@ function showNotification(message) {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: linear-gradient(135deg, var(--success-color), #059669);
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 12px;
-        box-shadow: var(--shadow-lg);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         z-index: 3000;
         animation: slideIn 0.3s ease-out;
     `;
@@ -1079,17 +1091,6 @@ function showNotification(message) {
             document.body.removeChild(notification);
         }, 300);
     }, 3000);
-}
-
-function showWordOfTheDay() {
-    // Show word of the day modal on first visit
-    const hasSeenToday = localStorage.getItem('vocabulam-wotd-' + new Date().toDateString());
-    if (!hasSeenToday) {
-        setTimeout(() => {
-            wordOfDayModal.classList.remove('hidden');
-            localStorage.setItem('vocabulam-wotd-' + new Date().toDateString(), 'true');
-        }, 2000);
-    }
 }
 
 // Add CSS for typing indicator and notifications
