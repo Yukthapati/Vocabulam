@@ -1,6 +1,5 @@
 # Vocabulam - Advanced Vocabulary & Grammar Assistant
 
-![Vocabulam Logo](https://img.shields.io/badge/Vocabulam-Language%20Learning-blue?style=for-the-badge&logo=book&logoColor=white)
 
 A comprehensive, AI-powered language learning companion that helps you explore words, improve grammar, and generate creative content. Built with modern web technologies for an engaging and interactive experience.
 
@@ -41,7 +40,7 @@ A comprehensive, AI-powered language learning companion that helps you explore w
 
 ## 🚀 Live Demo
 
-Visit the live application: [Vocabulam on Netlify](https://bejewelled-pegasus-00953d.netlify.app)
+Visit the live application: [Vocabulam on Netlify](https://vocabulam.netlify.app/)
 
 ## 🛠️ Technologies Used
 
